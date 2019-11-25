@@ -1,4 +1,9 @@
+# Import local configuration
 import config
+
+# Forcing oauthlib to accept non-https requests
+import os
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 import json
 import random
@@ -19,10 +24,14 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm import relationship
 
+
+
 # Create flask app and set db path
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = config.db_uri
 db = SQLAlchemy(app)
+
+app.secret_key = config.secret_key
 
 # Parse client_secret.json file to retrieve credentials for using Google Auth
 API_CLIENT_DATA = json.loads(open('client_secret.json', 'r').read())['web']
@@ -74,7 +83,7 @@ class Item(db.Model):
     id = Column(Integer, primary_key=True)
     title = Column(String(80), nullable=False)
     author = Column(String(80), nullable=False)
-    description = Column(String(250))
+    description = Column(String(1000))
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
 
@@ -306,5 +315,4 @@ def categoriesJSON():
 
 
 if __name__ == "__main__":
-    app.secret_key = 'super_secret_key'
     app.run(debug=True, host='0.0.0.0')
