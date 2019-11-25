@@ -1,0 +1,6 @@
+client_secret.json
+config.py
+application.pyc
+catalogapp.db
+.DS_Store
+ __pycache__
