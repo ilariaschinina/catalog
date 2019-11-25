@@ -2,7 +2,17 @@
 This app has been built as project for the Udacity Full Stack Web Developer Nanodegree program.
 It is a small catalog app that organizes books for learning programming languages.
 
-Main features:
+You can visit my app here: http://catalog-app.schinina.eu/
+
+
+## Table of Contents
+
+- [Main Features](#main-features)
+- [Server Configuration](#server-configuration)
+
+
+## Main Features
+
 * The basic CRUD functionalities have been implemented and only the authorized users can have access to them
 * The app supports OAuth2 login with Google
 * The project implements JSON endpoints that serve the same information as displayed in the HTML endpoints:
@@ -10,34 +20,15 @@ Main features:
     * for all categories
     * for a single category
 
-## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Prerequisites: VM](#prerequisites-VM)
-- [Prerequisites: the data](#prerequisites-the-data)
-- [Running](#running)
+## Server Configuration
 
-
-### Prerequisites: VM
-
-* Install [VirtualBox](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
-* Install [Vagrant](https://www.vagrantup.com/downloads.html)
-	* Run `vagrant --version` to be sure that Vagrant is successfully installed)
-* The VM configuration is included in this repository
-* Start the virtual machine from your terminal while being inside the **vagrant** subdirectory by running:
-	* `vagrant up`
-	* `vagrant ssh`
-* Now you are logged, change directory with `cd /vagrant/catalog`. Files in the VM's `/vagrant` directory are shared with the vagrant folder on your computer
-
-### Prerequisites: the data
-
-* Run `pip3  install  -r  requirements.txt` in order to install the dependencies
-* Run `python3 db_setup.py`to generate the database
-* Run  `python3 db_data.py` to populate the database
-* Create a [Google credential file](https://console.cloud.google.com/projectselector2/home/dashboard) (to allow Google login), name it `client_secret.json` and place in the `catalog` folder
-
-### Running
-
-* Before launching the main script, type in your terminal `export OAUTHLIB_INSECURE_TRANSPORT=1` (this is to avoid having to use https with Oauthlib)
-* Run now `python3 application.py`
-* Open your browser and go to `http://localhost:5000`
+The second part of the project for Udacity was the setup of a Linux server to host the app. The requirements were: 
+* Updating all currently installed packages
+* Changing the SSH port from 22 to 2200
+* Configuring the UFW to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
+* Creating a new user for the project reviewer, `grader`, giving sudo permissions, configuring SSH authorisation access
+* Configurimg the local timezone to UTC
+* Installing and configuring Apache to serve a Python mod_wsgi application
+* Installing and configuring PostgreSQL:
+	* Creating a new database user named catalog with limited permissions to my catalog application database
