@@ -1,4 +1,8 @@
-# Catalog App for a small coding book collection
+# Update: repo moved to Bitbucket
+
+Click [here](https://bitbucket.org/ilariaschinina/catalogapp/src/master/) to see the most recent version of the source code!
+
+## Catalog App for a small coding book collection
 This app has been built as project for the Udacity Full Stack Web Developer Nanodegree program.
 It is a small catalog app that organizes books for learning programming languages.
 
